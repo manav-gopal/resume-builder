@@ -3,9 +3,12 @@ import { motion, useAnimation } from 'framer-motion';
 import { Button } from '@mui/material';
 import FeatureSection from './components/Feature';
 import Image from 'next/image';
-import Link from 'next/link';
-import Person from './components/Person';
+// import Link from 'next/link';
+// import Person from './components/Person';
 import NavHome from '../NavHome';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { NavBarActions } from '../builder/nav-bar/atoms';
 
 const HomeLayout = () => {
   const controls = useAnimation();
@@ -19,6 +22,18 @@ const HomeLayout = () => {
     type: 'spring',
     stiffness: 400,
     damping: 17,
+  };
+
+  const userData: any = useSelector((state:any) => state.userData);
+  const handleBuildResume = () => {
+    if (userData) {
+      // Redirect logic when userData is not null
+      // You can replace '/builder' with your desired redirect path
+      window.location.href = '/builder';
+    } else {
+      // Display toast message when userData is null
+      toast.error('Please log in to build your resume.');
+    }
   };
 
   return (
@@ -68,11 +83,20 @@ const HomeLayout = () => {
                   —Mark Twain
                 </p>
               </div>
-              <Link href="/builder" passHref={true}>
+              {/* <Link href="/builder" passHref={true}>
                 <Button variant="contained" className="bg-resume-700 mb-2 hover:scale-105">
                   BUILD YOUR RESUME
                 </Button>
-              </Link>
+              </Link> */}
+              <NavBarActions>
+                <Button
+                  variant="contained"
+                  className="bg-resume-700 mb-2 hover:scale-105"
+                  onClick={handleBuildResume}
+                >
+                  BUILD YOUR RESUME
+                </Button>
+              </NavBarActions>
               <p
                 className="xl:invisible text-resume-800"
                 style={{ fontFamily: "'Roboto Slab', serif" }}
@@ -83,6 +107,40 @@ const HomeLayout = () => {
           </motion.div>
         </div>
       </div>
+      <motion.div
+        className="mx-6 md:mx-40 xl:mx-60 my-32 w-75"
+        style={{
+          fontFamily: "'Roboto Slab', serif",
+          width: '67%',
+          height: 'auto',
+          transform: 'translate(0,-20%)',
+          paddingTop: '10rem',
+        }}
+      >
+        <p
+          style={{
+            fontFamily: "'Roboto Slab', serif",
+            fontSize: '1rem',
+            paddingBottom: '1rem',
+            color: 'rgb(60,82,104)',
+          }}
+        >
+          Developed By 7th Sem Students Of -
+        </p>
+        <p style={{ fontFamily: "'Roboto Slab', serif", fontSize: '2rem', paddingBottom: '1rem' }}>
+          JK Institute Of Engineering Bilaspur
+        </p>
+        <Image
+          src="/jkengineering.jpg"
+          alt="JK Group"
+          layout="responsive"
+          width={100}
+          height={100}
+          style={{
+            borderRadius: '30px',
+          }}
+        />
+      </motion.div>
 
       <motion.div
         className="mx-6 md:mx-40 xl:mx-60 my-32 w-75"
@@ -135,11 +193,11 @@ const HomeLayout = () => {
                     CONTRIBUTE
                   </Button>
                 </a>
-              </div>
-            </div>
+                </div>
+                </div>
+                </div>
           </div>
-        </div>
-      </div> */}
+        </div> */}
 
       <div
         id="about-us"
@@ -148,7 +206,7 @@ const HomeLayout = () => {
       >
         <h2 className="text-resume-800 text-3xl mb-2 text-center lg:text-left">About us</h2>
         <p className="text-resume-400 mb-8 text-center lg:text-left">
-          A gorup of developers and designers — who love to build projects and learn along!
+          A group of developers and designers — who love to build projects and learn along!
         </p>
         <p className="text-resume-200 mb-8 text-center lg:text-left">
           Manav Gopal | Harsh Sahu | Parasnath Sannat
@@ -159,12 +217,12 @@ const HomeLayout = () => {
         {/* <p className="text-resume-400 my-8 text-center lg:text-left">
           Read our design story on&nbsp;
           <a
-            href="https://medium.com/@yakshag/e-resume-build-a-professional-resume-design-case-study-3dc02a6359ea"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline"
+          href="https://medium.com/@yakshag/e-resume-build-a-professional-resume-design-case-study-3dc02a6359ea"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline"
           >
-            Medium
+          Medium
           </a>
           ↗
         </p> */}

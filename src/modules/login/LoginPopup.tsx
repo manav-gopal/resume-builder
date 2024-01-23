@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // from mui Material UI
 import { Menu, MenuItem, Button, Backdrop, Box, Modal, Fade } from '@mui/material';
+import LogoutButton from './LogoutButton';
 
 const style = {
   position: 'absolute',
@@ -101,6 +102,9 @@ export default function TransitionsModal(props: MyProps) {
     }
   };
 
+  // To Handle The logup event
+
+
   return (
     <div>
       <StyledButton
@@ -120,9 +124,9 @@ export default function TransitionsModal(props: MyProps) {
           'aria-labelledby': 'login_button',
         }}
       >
-        <MenuItem onClick={handleLogClose}>Profile</MenuItem>
-        <MenuItem onClick={handleLogClose}>My account</MenuItem>
-        <MenuItem onClick={handleLogClose}>Logout</MenuItem>
+        {/* <MenuItem onClick={handleLogClose}>Profile</MenuItem>
+        <MenuItem onClick={handleLogClose}>My account</MenuItem> */}
+        <MenuItem><LogoutButton/></MenuItem>
       </Menu>
       <ToastContainer
         position="top-right"

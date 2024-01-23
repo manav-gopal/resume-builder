@@ -85,7 +85,7 @@ const BuilderLayout = () => {
                 '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 'full' }, // responsive width
               }}
               anchor="right"
-              close
+              // close
             >
               <EditorLayout />
             </Drawer>
